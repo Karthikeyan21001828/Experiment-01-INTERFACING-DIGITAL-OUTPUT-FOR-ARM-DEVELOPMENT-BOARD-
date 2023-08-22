@@ -1,6 +1,4 @@
 # Experiment-01-INTERFACING DIGITAL OUTPUT FOR ARM DEVELOPMENT BOARD 
- 
-
 ## Aim: To Interface a Digital output (LED) to ARM development board and write a blink code 
 ## Components required: STM32 CUBE IDE, NUCLEO ARM DEVELOPMENT BOARD  
 ## Theory 
@@ -29,9 +27,6 @@ The main features of LPC2148 include the following.
 •	The incorporated oscillator on the chip will work by an exterior crystal that ranges from 1 MHz-25 MHz
 •	The modes for power-conserving mainly comprise idle & power down.
 •	For extra power optimization, there are individual enable or disable of peripheral functions and peripheral CLK scaling.
- 
- 
-
 ## Procedure:
  1. click on STM 32 CUBE IDE, the following screen will appear 
  ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
@@ -72,15 +67,8 @@ The main features of LPC2148 include the following.
 
 12. connect the stm nucleo board and click on run 
 ![image](https://user-images.githubusercontent.com/36288975/226189649-b5dff389-91df-4eca-b84a-1127c6562637.png)
-
-
-
-
-
-
 ## STM 32 CUBE PROGRAM :
 ```c
-
 #include "main.h"
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
@@ -94,9 +82,7 @@ HAL_Init();
   while (1)
   {
 	  led();
-   
   }
-  
 }
 void led()
 {
@@ -105,15 +91,11 @@ void led()
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
 	HAL_Delay(2000);
 }
-
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
-  
   HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1);
-  
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
@@ -123,48 +105,36 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
 }
-
-
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-
   
   __HAL_RCC_GPIOA_CLK_ENABLE();
-
   
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-
- 
   GPIO_InitStruct.Pin = GPIO_PIN_5;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
 }
 void Error_Handler(void)
 {
-  
   __disable_irq();
   while (1)
   {
   }
- 
 }
-
 #ifdef  USE_FULL_ASSERT
 void assert_failed(uint8_t *file, uint32_t line)
 {
@@ -176,8 +146,6 @@ void assert_failed(uint8_t *file, uint32_t line)
  ![LED_OFF](https://github.com/Karthikeyan21001828/Experiment-01-INTERFACING-DIGITAL-OUTPUT-FOR-ARM-DEVELOPMENT-BOARD-/assets/93427303/09584d24-f88f-4f3c-8bb3-aff5b0f73adf)
 
  ![LED_ON](https://github.com/Karthikeyan21001828/Experiment-01-INTERFACING-DIGITAL-OUTPUT-FOR-ARM-DEVELOPMENT-BOARD-/assets/93427303/fbe164da-c018-4a1d-b1f8-f176c9563215)
-
- 
 ## Result :
 Interfacing a digital output with ARM microcontroller is executed and the results are verified.
 
